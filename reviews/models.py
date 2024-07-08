@@ -1,7 +1,8 @@
 
 # Create your models here.
 from django.db import models
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User  # Assuming you're using Django's built-in User model
+from django.core.validators import MinValueValidator, MaxValueValidator
 
 class Movie(models.Model):
     tmdb_id = models.IntegerField(unique=True)  # Add this field to store TMDb movie IDs
@@ -15,7 +16,7 @@ class Movie(models.Model):
 class Review(models.Model):
     movie = models.ForeignKey(Movie, on_delete=models.CASCADE, related_name='reviews')
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='reviews')
-    rating = models.IntegerField()
+    rating = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(5)])
     comment = models.TextField()
 
     def __str__(self):

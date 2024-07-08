@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 import os
 from pathlib import Path
+from datetime import timedelta 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -41,7 +42,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'rest_framework_simplejwt.token_blacklist',
-
+    'drf_yasg',  # For Swagger/OpenAPI documentation
 ]
 
 REST_FRAMEWORK = {
@@ -56,10 +57,6 @@ REST_FRAMEWORK = {
     ],
     'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema',  # ensure AutoSchema is set
 }
-
-
-SCHEMA_COERCE_PATHS = True  # Ensure paths are coerced correctly
-
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -89,12 +86,7 @@ TEMPLATES = [
     },
 ]
 
-# Override the template location for django_filters
-FORM_RENDERER = 'django.forms.renderers.TemplatesSetting'
-
-
 WSGI_APPLICATION = "moviereview.wsgi.application"
-
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
@@ -105,7 +97,6 @@ DATABASES = {
         "NAME": BASE_DIR / "db.sqlite3",
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
@@ -125,7 +116,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 
@@ -137,20 +127,17 @@ USE_I18N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
-STATIC_URL = "static/"
+STATIC_URL = "/static/"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-DJANGO_FILTERS_RENDERERS = [
-    'django_filters.rest_framework.backends.DjangoFilterBackend',
-]
+# Django Filters settings
 DJANGO_FILTERS = {
     'DEFAULT_RENDERER_CLASSES': [
         'django_filters.rest_framework.renderers.DjangoFilterBackend',
@@ -161,3 +148,38 @@ DJANGO_FILTERS = {
     ],
     'FILTERS_DISABLE_HTML_FORM': True,
 }
+
+# DRF-SimpleJWT token blacklist app settings
+SIMPLE_JWT = {
+    'ROTATE_REFRESH_TOKENS': True,
+    'BLACKLIST_AFTER_ROTATION': True,
+    'AUTH_HEADER_TYPES': ('Bearer',),
+}
+
+# DRF-YASG settings for Swagger/OpenAPI documentation
+SWAGGER_SETTINGS = {
+    'SECURITY_DEFINITIONS': {
+        'Bearer': {
+            'type': 'apiKey',
+            'name': 'Authorization',
+            'in': 'header',
+        },
+    },
+    'USE_SESSION_AUTH': False,
+    'api_version': '1.0',
+    'enabled_methods': [
+        'get',
+        'post',
+        'put',
+        'patch',
+        'delete',
+    ],
+}
+
+# Optional: Uncomment this if using DRF-YASG in development mode
+# Disable Django's static file handling in development to avoid conflicts
+# with DRF-YASG's static files.
+if DEBUG:
+    TEMPLATES[0]['OPTIONS']['context_processors'].append(
+        'django.template.context_processors.static'
+    )
