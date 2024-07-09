@@ -17,36 +17,6 @@ from rest_framework.views import APIView
 
 
 
-# class UserCreateAPIView(generics.CreateAPIView):
-#     queryset = User.objects.all()
-#     serializer_class = UserSerializer
-#     permission_classes = [permissions.AllowAny]
-
-#     def post(self, request, *args, **kwargs):
-#         serializer = self.get_serializer(data=request.data)
-#         if serializer.is_valid():
-#             user = serializer.save()
-#             refresh = RefreshToken.for_user(user)
-#             return Response({
-#                 'refresh': str(refresh),
-#                 'access': str(refresh.access_token),
-#             }, status=status.HTTP_201_CREATED)
-#         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-
-# class UserLogoutAPIView(generics.GenericAPIView):
-#     permission_classes = [permissions.IsAuthenticated]
-
-#     def post(self, request, *args, **kwargs):
-#         try:
-#             refresh_token = request.data["refresh"]
-#             token = RefreshToken(refresh_token)
-#             token.blacklist()
-
-#             return Response(status=status.HTTP_205_RESET_CONTENT)
-#         except Exception as e:
-#             return Response(status=status.HTTP_400_BAD_REQUEST)
-
 class MovieListView(generics.ListAPIView):
     queryset = Movie.objects.all()
     serializer_class = MovieSerializer
@@ -64,12 +34,12 @@ class MovieListView(generics.ListAPIView):
 class MovieViewSet(viewsets.ModelViewSet):
     queryset = Movie.objects.all()
     serializer_class = MovieSerializer
-    permission_classes = [IsAuthenticatedOrReadOnly]
+    permission_classes = [IsAuthenticated]
     filter_backends = [filters.SearchFilter, DjangoFilterBackend]
     search_fields = ['title', 'description']
     filterset_fields = ['genre']
 
-    @action(detail=False, methods=['post'], permission_classes=[IsAuthenticatedOrReadOnly])
+    @action(detail=False, methods=['post'], permission_classes=[IsAuthenticated])
     def fetch_from_tmdb(self, request):
         tmdb_id = request.data.get('tmdb_id')
         if not tmdb_id:
@@ -84,7 +54,7 @@ class MovieViewSet(viewsets.ModelViewSet):
 class ReviewViewSet(viewsets.ModelViewSet):
     queryset = Review.objects.all()
     serializer_class = ReviewSerializer
-    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    permission_classes = [permissions.IsAuthenticated]
     filter_backends = [filters.SearchFilter, DjangoFilterBackend]
     search_fields = ['comment', 'user__username', 'movie__title']
     filterset_fields = ['rating']
@@ -102,7 +72,6 @@ class RecommendationView(generics.ListAPIView):
         return get_recommendations_for_user(user)
 
 
-# An example view that returns a simple response, you can modify or remove this
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
@@ -117,13 +86,13 @@ from rest_framework_simplejwt.views import TokenObtainPairView
 
 
 class MyObtainTokenPairView(TokenObtainPairView):
-    permission_classes = (AllowAny,)
+    permission_classes = (permissions.AllowAny,)
     serializer_class = MyTokenObtainPairSerializer
 
 
 class RegisterView(generics.CreateAPIView):
     queryset = User.objects.all()
-    permission_classes = (AllowAny,)
+    permission_classes = (permissions.AllowAny,)
     serializer_class = RegisterSerializer
 
 class LogoutView(APIView):

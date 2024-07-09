@@ -42,18 +42,16 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'rest_framework_simplejwt.token_blacklist',
-    'drf_yasg',  # For Swagger/OpenAPI documentation
+    'drf_yasg', 
 ]
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework_simplejwt.authentication.JWTAuthentication',
-        'rest_framework.authentication.SessionAuthentication',  # or TokenAuthentication
-        # add other authentication classes if needed
+        # 'rest_framework.authentication.SessionAuthentication',  # or TokenAuthentication
     ],
     'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.IsAuthenticatedOrReadOnly',  # example permission class
-        # add other permission classes if needed
+        'rest_framework.permissions.IsAuthenticated',
     ],
     'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema',  # ensure AutoSchema is set
 }
@@ -157,25 +155,20 @@ SIMPLE_JWT = {
 }
 
 # DRF-YASG settings for Swagger/OpenAPI documentation
+
 SWAGGER_SETTINGS = {
     'SECURITY_DEFINITIONS': {
         'Bearer': {
             'type': 'apiKey',
             'name': 'Authorization',
-            'in': 'header',
-        },
+            'in': 'header'
+        }
     },
-    'USE_SESSION_AUTH': False,
-    'api_version': '1.0',
-    'enabled_methods': [
-        'get',
-        'post',
-        'put',
-        'patch',
-        'delete',
-    ],
+    'USE_SESSION_AUTH': False,  # Disable session-based authentication
+    'LOGIN_URL': 'rest_framework:login',
+    'LOGOUT_URL': 'rest_framework:logout',
+    'DEFAULT_INFO': 'path.to.urls.schema_view',
 }
-
 # Optional: Uncomment this if using DRF-YASG in development mode
 # Disable Django's static file handling in development to avoid conflicts
 # with DRF-YASG's static files.
