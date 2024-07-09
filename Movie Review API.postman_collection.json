@@ -1,0 +1,542 @@
+{
+	"info": {
+		"_postman_id": "5001f8cc-acd8-4fd3-a2cd-5ee76433084c",
+		"name": "Movie Review API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27243072",
+		"_collection_link": "https://warped-meadow-56220.postman.co/workspace/My-Workspace~8c960f17-d914-4494-8ed1-cdba28d99110/collection/27243072-5001f8cc-acd8-4fd3-a2cd-5ee76433084c?action=share&source=collection_link&creator=27243072"
+	},
+	"item": [
+		{
+			"name": "List Movies",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzIwNDQ5ODE5LCJpYXQiOjE3MjA0NDk1MTksImp0aSI6IjA0ZWRkZjI2NDk0NDQwZDc5OGZjNTFlNmY5ZmE3MmYxIiwidXNlcl9pZCI6MX0.gChDPZhRVQ_0zy3yAEMArp80tIXvIit1GwyaNN-7nHM",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/movies/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"movies",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User Registration",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "username",
+							"value": "sintu",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "sintu@123",
+							"type": "text"
+						},
+						{
+							"key": "password2",
+							"value": "sintu@123",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "sintu@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "first_name",
+							"value": "sintu",
+							"type": "text"
+						},
+						{
+							"key": "last_name",
+							"value": "rana",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/register/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"register",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User Login",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzIwNDQ5MzIxLCJpYXQiOjE3MjA0NDkwMjEsImp0aSI6IjE1MzI0OTJmYjBjYzRiMmY4NTRkMTNjODk5M2MxMTY4IiwidXNlcl9pZCI6MX0.7SHMkn3WKlrWPsQI17XbOqCvy2IEOqcDObuMmUPn00w",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "123",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/login/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"login",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User Logout",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzIwNDYwMDExLCJpYXQiOjE3MjA0NTY0MTEsImp0aSI6IjdhNjdmNDdmYmVkYTQ0ZWE5NTkzMDE0MDYzYWY2YTk5IiwidXNlcl9pZCI6MSwidXNlcm5hbWUiOiJhZG1pbiJ9.UGxycSYIZXtzdUI1x5hcVhQfQ0_qOu8_0HqkydOL5q8",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"refresh_token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTcyMDU0MjgxMSwiaWF0IjoxNzIwNDU2NDExLCJqdGkiOiI4Y2JlZGQ2YzJjODA0NmE2OTE4NmIwZWM5MTY5NjIzNyIsInVzZXJfaWQiOjEsInVzZXJuYW1lIjoiYWRtaW4ifQ.8dLLIb2hpcVePBgrm1wIyy4F7-c1LDG4l97XrYFagzo\"\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/logout/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"logout",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Fetch Movie Details",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzIwNTIwOTc1LCJpYXQiOjE3MjA1MjA2NzUsImp0aSI6ImNlODdmYWMyNDg3MzQ3MzY5YzlkNDZlNGRlNjAyOWUzIiwidXNlcl9pZCI6NSwidXNlcm5hbWUiOiJ2YWliaGF2In0.X94YqIvClHehWkqV2Acrn1x24euTflAZcBuiu7LS2Pw",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"tmdb_id\": 125\n}   ",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/movies/fetch_from_tmdb/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"movies",
+						"fetch_from_tmdb",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Reviews",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzIwNTIxNTc0LCJpYXQiOjE3MjA1MjEyNzQsImp0aSI6IjVjMTI5NjY3NjA0YzQwMjVhZGZmNzU0MmUwYWZhZTA3IiwidXNlcl9pZCI6NSwidXNlcm5hbWUiOiJ2YWliaGF2In0.v_OnvjG4CTXTlISAftJ9HiKYj8lDZ62lx2NSNoF_qeg",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"movie\": 7,\n    \"rating\": 5,\n    \"comment\": \"Best movie!\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/reviews/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"reviews",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List Reviews",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzIwNTIxNTc0LCJpYXQiOjE3MjA1MjEyNzQsImp0aSI6IjVjMTI5NjY3NjA0YzQwMjVhZGZmNzU0MmUwYWZhZTA3IiwidXNlcl9pZCI6NSwidXNlcm5hbWUiOiJ2YWliaGF2In0.v_OnvjG4CTXTlISAftJ9HiKYj8lDZ62lx2NSNoF_qeg",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8000/api/reviews/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"reviews",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Recommendations",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzIwNTIxMjI5LCJpYXQiOjE3MjA1MjA5MjksImp0aSI6IjY1MWIyZmVlN2Q2MDQ2YTE5NjUwMzcyNThhNzA2OTEzIiwidXNlcl9pZCI6NSwidXNlcm5hbWUiOiJ2YWliaGF2In0.HyTX19WcWjkEd5u-6lhco1hUmuGwymZvREGREnRHxe4",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8000/api/recommendations/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"recommendations",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update a Review",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzIwNDU4MjE2LCJpYXQiOjE3MjA0NTc5MTYsImp0aSI6ImJjY2UxZGY1NDVkZTRlYzE5N2RkZGM3YzQ0MjUxM2UxIiwidXNlcl9pZCI6MSwidXNlcm5hbWUiOiJhZG1pbiJ9.S9N9q4DC3aNEGI3PzcjMPjcI5lkVaozdPDwhqEyu7DQ",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"movie\":6,\n    \"rating\": 4,\n    \"comment\": \"Good movie but not the best.\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/reviews/1/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"reviews",
+						"1",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Movie",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzIwNTIxMjI5LCJpYXQiOjE3MjA1MjA5MjksImp0aSI6IjY1MWIyZmVlN2Q2MDQ2YTE5NjUwMzcyNThhNzA2OTEzIiwidXNlcl9pZCI6NSwidXNlcm5hbWUiOiJ2YWliaGF2In0.HyTX19WcWjkEd5u-6lhco1hUmuGwymZvREGREnRHxe4",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/movies/10/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"movies",
+						"10",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Movie",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzIwNTIxMjI5LCJpYXQiOjE3MjA1MjA5MjksImp0aSI6IjY1MWIyZmVlN2Q2MDQ2YTE5NjUwMzcyNThhNzA2OTEzIiwidXNlcl9pZCI6NSwidXNlcm5hbWUiOiJ2YWliaGF2In0.HyTX19WcWjkEd5u-6lhco1hUmuGwymZvREGREnRHxe4",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/movies/10/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"movies",
+						"10",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Movie",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzIwNTIxMjI5LCJpYXQiOjE3MjA1MjA5MjksImp0aSI6IjY1MWIyZmVlN2Q2MDQ2YTE5NjUwMzcyNThhNzA2OTEzIiwidXNlcl9pZCI6NSwidXNlcm5hbWUiOiJ2YWliaGF2In0.HyTX19WcWjkEd5u-6lhco1hUmuGwymZvREGREnRHxe4",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"id\": 10,\n        \"tmdb_id\": 126,\n        \"title\": \"Short Working \",\n        \"description\": \"A dramatisation of the workers' protests in June 1976 in Radom, seen from the perspective of the local Secretary of the Polish United Workers' Party. [Produced in 1981, but not commercially released until 1996.]\",\n        \"release_date\": \"1981-01-01\",\n        \"genre\": \"Drama,TV Movie\",\n        \"poster\": \"https://image.tmdb.org/t/p/original/rJwiDSoKI3ryiLTZZ6BPUl2CrwG.jpg\"\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/movies/10/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"movies",
+						"10",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Review",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzIwNTIxNTc0LCJpYXQiOjE3MjA1MjEyNzQsImp0aSI6IjVjMTI5NjY3NjA0YzQwMjVhZGZmNzU0MmUwYWZhZTA3IiwidXNlcl9pZCI6NSwidXNlcm5hbWUiOiJ2YWliaGF2In0.v_OnvjG4CTXTlISAftJ9HiKYj8lDZ62lx2NSNoF_qeg",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8000/api/reviews/1/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"reviews",
+						"1",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Review",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzIwNTIxNTc0LCJpYXQiOjE3MjA1MjEyNzQsImp0aSI6IjVjMTI5NjY3NjA0YzQwMjVhZGZmNzU0MmUwYWZhZTA3IiwidXNlcl9pZCI6NSwidXNlcm5hbWUiOiJ2YWliaGF2In0.v_OnvjG4CTXTlISAftJ9HiKYj8lDZ62lx2NSNoF_qeg",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"movie\": 6,\n    \"rating\": 4,\n    \"comment\": \"Average movie!\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/reviews/1/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"reviews",
+						"1",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Review",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzIwNTIxOTIyLCJpYXQiOjE3MjA1MjE2MjIsImp0aSI6ImZhMzE3NWY4YzUxMDRiY2JiODJkMTdiNDllYzU1YzNiIiwidXNlcl9pZCI6NSwidXNlcm5hbWUiOiJ2YWliaGF2In0.2ej4s6EFrZw5k35td-rG1kHKPrtkLzQqQFge05Q4DAg",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8000/api/reviews/3/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"reviews",
+						"3",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
